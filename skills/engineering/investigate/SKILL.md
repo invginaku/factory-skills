@@ -1,7 +1,6 @@
 ---
 name: investigate
-description: "Prove or disprove a ticket's claim by reproducing it on a test stand, then write the spec the evidence supports."
-disable-model-invocation: true
+description: "Prove or disprove a ticket's claim by reproducing it on a test stand, then write the spec the evidence supports. Use when a ticket asserts a behaviour nobody has verified, when it is unclear which side owns a defect, when a bug report may not reproduce at all, or when the user asks to investigate, reproduce, or confirm a bug on a real environment."
 ---
 
 # Investigate

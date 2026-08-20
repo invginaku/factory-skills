@@ -6,7 +6,7 @@ The agent asks you only what a stand cannot answer. A question about how the sys
 
 ## When to reach for it
 
-You invoke this by typing `/investigate`, and the agent won't reach for it on its own.
+Type `/investigate`, or the agent reaches for it automatically when a task fits. It is model-invoked on purpose: the end state is an orchestrator picking a tagged ticket off the queue and investigating it with nobody at the keyboard, and a user-invoked skill can never be fired that way.
 
 Reach for it when a ticket asserts a behaviour and you want that assertion proven or knocked down before anyone writes code, or when the ticket is real but nobody yet knows which side owns the defect. For sharpening a plan you already believe in, use [grilling](https://aihero.dev/skills-grilling); for turning a settled conversation into a spec without any reproduction, use [to-spec](https://aihero.dev/skills-to-spec).
 
