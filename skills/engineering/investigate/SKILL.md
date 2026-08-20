@@ -32,11 +32,11 @@ Asking a human what the stand can show you is the failure this skill exists to r
 Write each hypothesis so that a run on the stand can **refute** it. State both branches explicitly:
 
 ```
-Г1: Бэкенд не резолвит таймзону для зарубежных станций.
-    Проверка:      поиск Астана→Алма-Ата, сравнить *_Local с московским.
-    Подтверждается: поля тождественно равны.
-    Опровергается:  поля различаются на смещение зоны.
-    Контроль:      РФ-маршрут с прибытием в другой зоне; там поля обязаны различаться.
+Г1: Корпоративная скидка не применяется к заказам из мобильного клиента.
+    Проверка:      оформить заказ из мобильного, сравнить итог с базовой ценой.
+    Подтверждается: итог равен базовой цене, скидки нет.
+    Опровергается:  итог ниже базовой на величину скидки.
+    Контроль:      тот же заказ из веба; там скидка обязана примениться.
 ```
 
 **Every hypothesis carries a control case.** A check that can only confirm is not a check: "the two fields match" means a bug only once you have shown the mechanism works somewhere else. The control is what separates a proven root cause from a plausible story. A hypothesis you cannot write a control for is still too vague to test, so sharpen it until you can.
