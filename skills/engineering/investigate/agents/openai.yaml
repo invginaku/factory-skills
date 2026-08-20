@@ -1,0 +1,5 @@
+interface:
+  display_name: "Investigate"
+  short_description: "Prove a ticket's claim on a test stand"
+policy:
+  allow_implicit_invocation: false

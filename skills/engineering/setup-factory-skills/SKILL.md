@@ -11,6 +11,7 @@ Scaffold the per-repo configuration that the engineering skills assume:
 - **Issue tracker**: where issues live (Yandex Tracker for factory repos; GitHub, GitLab, and local markdown are also supported out of the box)
 - **Triage labels**: the strings used for the five canonical triage roles
 - **Domain docs**: where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
+- **Test stand**: the environment `investigate` reproduces behaviour on, and what it may do there
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
 
@@ -61,12 +62,18 @@ The defaults are the five canonical roles, each label string equal to its name: 
 
 Offer **multi-context** (a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files) only when exploration found monorepo signals. Then confirm which layout they want.
 
+**Section D: Test stand.** Skip this section entirely if the `investigate` skill isn't installed (exploration told you), since nothing else reads the file.
+
+If it is installed, ask whether this repo has a test environment the agent may reproduce on. On **yes**, collect: the app URL, the API base, the allowed hosts, how sign-in works, where the app keeps its access token, and which mutations are safe with their cleanups. Record it in `docs/agents/test-stand.md` from the template, and put the credential values in an untracked env file rather than in the doc. Default `PROBE_ALLOW_MUTATIONS` to `false`; only turn it on when the user says the account is genuinely disposable.
+
+On **no**, write no file: `investigate` will tell the user what it needs when it first runs.
+
 ### 3. Confirm and edit
 
 Show the user a draft of:
 
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
-- The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, and `docs/agents/triage-labels.md` (the last only when `triage` is installed)
+- The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, `docs/agents/triage-labels.md` (only when `triage` is installed), and `docs/agents/test-stand.md` (only when `investigate` is installed)
 
 Let them edit before writing.
 
@@ -98,9 +105,13 @@ The block:
 ### Domain docs
 
 [one-line summary of layout: "single-context" or "multi-context"]. See `docs/agents/domain.md`.
+
+### Test stand
+
+[one-line summary of the environment and whether mutations are allowed]. See `docs/agents/test-stand.md`.
 ```
 
-Include the `### Triage labels` sub-block, and write `docs/agents/triage-labels.md`, only when `triage` is installed and Section B ran. When it isn't, both are omitted.
+Include the `### Triage labels` sub-block, and write `docs/agents/triage-labels.md`, only when `triage` is installed and Section B ran. When it isn't, both are omitted. The same rule binds `### Test stand` and `docs/agents/test-stand.md` to `investigate` and Section D.
 
 Then write the docs files using the seed templates in this skill folder as a starting point:
 
@@ -110,6 +121,7 @@ Then write the docs files using the seed templates in this skill folder as a sta
 - [issue-tracker-local.md](./issue-tracker-local.md): local-markdown issue tracker
 - [triage-labels.md](./triage-labels.md): label mapping (only if `triage` is installed)
 - [domain.md](./domain.md): domain doc consumer rules + layout
+- [test-stand.md](./test-stand.md): test stand environment, account, and mutation rules (only if `investigate` is installed)
 
 For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
 
