@@ -59,6 +59,8 @@ Read exact values from the same API calls the app itself makes (take the bearer 
 | Secrets | Keep tokens inside `page.evaluate`. They stay out of the verdict, the spec, and any file you write. |
 | Stop and ask | Money movement, messages to real people, account or permission changes, deleting data you did not create, anything irreversible, and anything on production. Describe the step you need instead of taking it. |
 
+**Time-box every wait to three minutes.** When a page, a request, or a sign-in has not come back by then, treat the stand as unavailable: stop, report what you collected, and name the call that stalled. Retry a stalled call once at most. A run that hangs silently is worse than one that fails, because from the outside it is indistinguishable from progress, and nobody learns anything until someone thinks to check.
+
 Where a result neither confirms nor refutes, sharpen the hypothesis and run again, **at most three times**. Then report `⚠️ воспроизвести не удалось` with what you did collect. A dead end is an honest result; an invented cause is not.
 
 While you are in there, collect what the fix will need: which side owns the defect (frontend, backend, integration), the specific file or endpoint, which neighbouring cases are affected, and how the boundary data behaves.
